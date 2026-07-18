@@ -19,7 +19,7 @@ const Header = () => {
     <Navbar className="navBg" expand="lg">
       <Container fluid>
         <Navbar.Brand className="navText" href="#">
-          <Link to="./" relative="route">
+          <Link to="/">
             <Image
               fluid
               src={logo}

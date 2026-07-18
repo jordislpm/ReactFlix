@@ -74,9 +74,9 @@ useEffect(() => {
                   {movieGroup.map((movie) => {
                     return (
                       <Card key={movie.id} className="card">
-                        <Link to={`../movie/${movie.id}`} relative="route">
+                        <Link to={`/movie/${movie.id}`}>
                           <Card.Img
-                            src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             className="carrouselCard--img"
                             alt={movie.title}
                           />

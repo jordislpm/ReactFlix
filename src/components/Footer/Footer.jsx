@@ -34,7 +34,7 @@ const Footer = () => {
         </Row>
         <Row> 
           <Col xs={12} md={3}>
-            <Link to="./about" relative="route" style={{color:"white", textDecoration:"none"}}>
+            <Link to="/about" style={{color:"white", textDecoration:"none"}}>
             <p>About Reactflix</p>
             </Link>
           </Col>
@@ -67,7 +67,7 @@ const Footer = () => {
         <Row>
           <Col></Col>
           <Col>
-          <Link to="./" relative="route">
+          <Link to="/">
             <Image src={logo} fluid alt="Netflix Logo" className="pb-3" />
             </Link>
           </Col>

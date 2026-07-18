@@ -3,7 +3,7 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 
 const ErrorPage = () => {
   const { errorCode } = useParams();
-  if (!errorCode === "MovieNotFound") {
+  if (errorCode === "MovieNotFound") {
     return <>
       <div className="body">
           <h1>Movie Not Found</h1>

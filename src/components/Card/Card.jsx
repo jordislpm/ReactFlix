@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({title, url,id}) => {
   return (
-    <Link to={`../movie/${id}`} relative="route"> 
+    <Link to={`/movie/${id}`}> 
      <div className='card_container'>
         {url && <img alt={title} className='card_img' src={url}/>}
      </div>

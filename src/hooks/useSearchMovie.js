@@ -7,11 +7,17 @@ function useSearchMovie(query, page) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(
-        `http://localhost:5000/movie/${query}/page/${page}`
-      );
-      setMaxAmountOfPages(response.data.total_pages);
-      setMovieList(response.data.results);
+      if (!query) return;
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const response = await axios.get(
+          `${apiUrl}/movie/${query}/page/${page}`
+        );
+        setMaxAmountOfPages(response.data.total_pages);
+        setMovieList(response.data.results);
+      } catch (error) {
+        console.error(`Error searching movies for "${query}" (page ${page}):`, error.message);
+      }
     }
 
     fetchData();

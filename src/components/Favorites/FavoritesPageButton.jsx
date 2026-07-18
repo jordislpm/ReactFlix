@@ -8,7 +8,7 @@ function FavoritesPageButton() {
   return (  
     <div className="starContainer">
 
-      <Link to="./favorites" relative="route">
+      <Link to="/favorites">
         <AiFillStar className="navText starIco" size={"2em"} s/>
       </Link>
     </div>

@@ -18,7 +18,7 @@ const SearchBar = () => {
   function submitFind(e){
     e.preventDefault()
     if (currentSearch != ""){
-      navigate(`search/${currentSearch}/page/1`);
+      navigate(`/search/${currentSearch}/page/1`);
     setCurrentSearch("") 
     } else{
       alert("please write which movie you want to search")
