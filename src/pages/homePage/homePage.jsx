@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import "./homePage.css";
 import useGetSingleMovie from "../../hooks/useGetSingleMovie";
 import Buttons from "../../components/Buttons/Buttons";
+import Loader from "../../components/Loader/Loader";
 
 const HomePage = () => {
-  const [moviePoster] = useGetSingleMovie(1011679);
+  const [moviePoster, , loadingPoster] = useGetSingleMovie(1011679);
   const [moviePosterName, setMoviePosterName] = useState([]);
   const [homeMobile, setHomeMobile] = useState(false);
 
@@ -30,6 +31,10 @@ const HomePage = () => {
       setMoviePosterName(moviePoster.title.split(" "));
     }
   }, [moviePoster]);
+
+  if (loadingPoster && !moviePoster) {
+    return <Loader fullPage message="Cargando películas..." />;
+  }
 
   return (
     <>

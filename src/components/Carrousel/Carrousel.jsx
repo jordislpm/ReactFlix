@@ -20,7 +20,7 @@ const ReactFlixCarrousel = ({
   }
 
   //To get the data from the category
-  const [movieList, setMovieList] = useGetMovieList(category, page);
+  const [movieList, setMovieList, , , loading] = useGetMovieList(category, page);
   const [groupOfMovies, setGroupOfMovies] = useState([]);
 
   //To divide all the movies in group of the max amount selected
@@ -62,32 +62,40 @@ useEffect(() => {
 }, [movieList, maxAmountOfCards]);
 
   return (
-    <>
+    <div className="carrousel-section">
       <h2>{title}</h2>
-      <Carousel indicators={false} slide={"next"} interval={interval}>
-        {groupOfMovies.length > 0 &&
-          groupOfMovies.map((movieGroup, index) => {
-            return (
-              <Carousel.Item key={`group-${index}`}>
-                <CardGroup className="carrouselCard">
-                  {movieGroup.map((movie) => {
-                    return (
-                      <Card key={movie.id} className="card">
-                        <Link to={`/movie/${movie.id}`}>
-                          <Card.Img
-                            src={movie.main_poster}
-                            className="carrouselCard--img"
-                          />
-                        </Link>
-                      </Card>
-                    );
-                  })}
-                </CardGroup>
-              </Carousel.Item>
-            );
-          })}
-      </Carousel>
-    </>
+      {loading ? (
+        <div className="carrousel-skeleton-group">
+          {[...Array(maxAmountOfCards)].map((_, index) => (
+            <div key={`skeleton-${index}`} className="carrousel-skeleton-card" />
+          ))}
+        </div>
+      ) : (
+        <Carousel indicators={false} slide={"next"} interval={interval}>
+          {groupOfMovies.length > 0 &&
+            groupOfMovies.map((movieGroup, index) => {
+              return (
+                <Carousel.Item key={`group-${index}`}>
+                  <CardGroup className="carrouselCard">
+                    {movieGroup.map((movie) => {
+                      return (
+                        <Card key={movie.id} className="card">
+                          <Link to={`/movie/${movie.id}`}>
+                            <Card.Img
+                              src={movie.main_poster}
+                              className="carrouselCard--img"
+                            />
+                          </Link>
+                        </Card>
+                      );
+                    })}
+                  </CardGroup>
+                </Carousel.Item>
+              );
+            })}
+        </Carousel>
+      )}
+    </div>
   );
 };
 

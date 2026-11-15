@@ -7,27 +7,43 @@ import axios from "axios";
  * @returns {Array} - Returns an array that contains the list of movies, setMovieList, amountOfPages, setAmountOfPages.
  */
 function useGetMovieList(category, page) {
-  const [movieList, setMovieList] = useState({});
-  const [amountOfPages, setAmountOfPages] = useState({});
+  const [movieList, setMovieList] = useState([]);
+  const [amountOfPages, setAmountOfPages] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchData() {
+      setLoading(true);
       try {
         const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
         const response = await axios.get(
           `${apiUrl}/movies/${category}/page/${page}`
         );
-        setAmountOfPages(response.data.total_pages);
-        setMovieList(response.data.results);
+        if (isMounted) {
+          setAmountOfPages(response.data.total_pages);
+          setMovieList(response.data.results || []);
+        }
       } catch (error) {
         console.error("Error fetching movie list in hook:", error.message);
+        if (isMounted) {
+          setMovieList([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [category, page]);
 
-  return [movieList, setMovieList, amountOfPages, setAmountOfPages];
+  return [movieList, setMovieList, amountOfPages, setAmountOfPages, loading];
 }
 
 export default useGetMovieList;

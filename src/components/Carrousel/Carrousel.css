@@ -20,3 +20,36 @@
     max-width: 100vh;
   }
 }
+
+.carrousel-section {
+  margin-bottom: 2rem;
+  min-height: 250px;
+}
+
+.carrousel-skeleton-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow: hidden;
+  padding: 5px 0;
+  min-height: 220px;
+}
+
+.carrousel-skeleton-card {
+  flex: 1 1 0;
+  min-width: 100px;
+  height: 220px;
+  background: linear-gradient(90deg, #2b2b2b 25%, #383838 50%, #2b2b2b 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

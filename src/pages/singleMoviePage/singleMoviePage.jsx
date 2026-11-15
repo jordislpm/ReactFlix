@@ -5,10 +5,11 @@ import "./singleMoviePage.css";
 import Buttons from "../../components/Buttons/Buttons";
 import YoutubeVideo from "../../components/youtubeVideo/youtubeVideo";
 import CarrouselSimilar from "../../components/CarrouselSimilar/CarrouselSimilar";
+import Loader from "../../components/Loader/Loader";
 
 const SingleMoviePage = () => {
   const { movieId } = useParams();
-  const [movie] = useGetSingleMovie(movieId);
+  const [movie, , loading] = useGetSingleMovie(movieId);
   const [mobile, setMobile] = useState(false);
   const [movieName, setMovieName] = useState([]);
 
@@ -33,6 +34,10 @@ const SingleMoviePage = () => {
       setMovieName(movie.title.split(" "));
     }
   }, [movie]);
+
+  if (loading && !movie) {
+    return <Loader fullPage message="Cargando detalles de la película..." />;
+  }
 
   return (
     <>
