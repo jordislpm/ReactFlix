@@ -1,4 +1,4 @@
-import { Link /*Or NavLink */ } from "react-router-dom";
+﻿import { Link /*Or NavLink */ } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -15,10 +15,6 @@ import {
   BsTwitter,
   BsYoutube,
 } from "react-icons/bs";
-
-//Please use <Link> or <NavLink> instead of <a> for more information:
-//Link https://reactrouter.com/en/main/components/link
-//NavLink https://reactrouter.com/en/main/components/nav-link
 
 const Footer = () => {
   return (
@@ -39,8 +35,7 @@ const Footer = () => {
             </Link>
           </Col>
           <Col xs={12} md={3}>
-            
-            <a href="https://github.com/Tutorias-de-programacion/ReactFinalProject" target="_blank" style={{color:"white", textDecoration:"none"}}>Github Repo</a>
+            <a href="https://github.com/Tutorias-de-programacion/ReactFinalProject" target="_blank" rel="noopener noreferrer" style={{color:"white", textDecoration:"none"}}>Github Repo</a>
           </Col>
           <Col xs={12} md={3}>
             <p>API</p>
@@ -61,7 +56,18 @@ const Footer = () => {
         </Row>
         <Row>
           <Col>
-            <p>©2022-2023 Reactflix Inc.</p>
+            <p className="mb-1">© 2022-{new Date().getFullYear()} Reactflix Inc.</p>
+            <p style={{ fontSize: "0.85rem", color: "#aaa" }}>
+              Developed by{" "}
+              <a
+                href="https://www.jordisdev.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#E50914", textDecoration: "none", fontWeight: "bold" }}
+              >
+                jordisdev.com
+              </a>
+            </p>
           </Col>
         </Row>
         <Row>
